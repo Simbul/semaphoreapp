@@ -1,0 +1,42 @@
+[
+  {
+    "branch_name": "master",
+    "branch_url": "http://10.0.1.76:3000/projects/61/branches/85",
+    "branch_status_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85/status?auth_token=Yds3w6o26FLfJTnVK2y9",
+    "branch_history_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85?auth_token=Yds3w6o26FLfJTnVK2y9",
+    "project_name": "testapp-sphinx",
+    "build_url": "http://10.0.1.76:3000/projects/61/branches/85/builds/1",
+    "build_number": 1,
+    "result": "passed",
+    "started_at": "2012-09-04T11:55:07Z",
+    "finished_at": "2012-09-04T12:01:16Z",
+    "commit": {
+      "id": "a31d32d5de89613369f934eb7d30fbeb08883334",
+      "url": "https://github.com/renderedtext/base-app/commit/a31d32d5de89613369f934eb7d30fbeb08883334",
+      "author_name": "Vladimir Saric",
+      "author_email": "vladimir@renderedtext.com",
+      "message": "Update 'shoulda' gem.",
+      "timestamp": "2012-10-02T07:00:14Z"
+    }
+  },
+  {
+    "branch_name": "testbranch",
+    "branch_url": "http://10.0.1.76:3000/projects/61/branches/86",
+    "branch_status_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/86/status?auth_token=Yds3w6o26FLfJTnVK2y9",
+    "branch_history_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/86?auth_token=Yds3w6o26FLfJTnVK2y9",
+    "project_name": "testapp-sphinx",
+    "build_url": "http://10.0.1.76:3000/projects/61/branches/86/builds/1",
+    "build_number": 1,
+    "result": "failed",
+    "started_at": "2012-09-05T11:55:07Z",
+    "finished_at": "2012-09-05T12:01:16Z",
+    "commit": {
+      "id": "73fce130ad23f265add5d55ee1da1c23b38f85a4",
+      "url": "https://github.com/renderedtext/base-app/commit/73fce130ad23f265add5d55ee1da1c23b38f85a4",
+      "author_name": "Marko Anastasov",
+      "author_email": "marko@renderedtext.com",
+      "message": "Update 'factory_girl_rails' gem and use new short FactoryGirl syntax.",
+      "timestamp": "2012-10-02T07:00:14Z"
+    }
+  }
+]
