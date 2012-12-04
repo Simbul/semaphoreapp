@@ -88,6 +88,14 @@ The gem uses classes to represent objects returned by API calls. The classes are
 * `Build`: a CI build. It may have a `Commit` object.
 * `Commit`: a Git commit.
 
+## Tests
+
+To run all the specs for this project:
+
+```bash
+$ rake
+```
+
 ## Contributing
 
 1. Fork it
