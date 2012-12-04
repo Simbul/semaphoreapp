@@ -1,19 +1,19 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/semaphore/version', __FILE__)
+require File.expand_path('../lib/semaphoreapp/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Alessandro Morandi"]
   gem.email         = ["webmaster@simbul.net"]
-  gem.description   = %q{TODO: A client for the Semaphore API}
-  gem.summary       = %q{TODO: A client for the Semaphore API}
+  gem.description   = %q{A client for the Semaphore API}
+  gem.summary       = %q{A client for the Semaphore API}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "semaphore"
+  gem.name          = "semaphoreapp"
   gem.require_paths = ["lib"]
-  gem.version       = Semaphore::VERSION
+  gem.version       = Semaphoreapp::VERSION
 
   gem.add_runtime_dependency 'json'
 
