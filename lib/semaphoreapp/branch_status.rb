@@ -1,12 +1,17 @@
 module Semaphoreapp
   class BranchStatus < OpenStruct
-    def initialize(hash)
-      hash['commit'] = Commit.from_hash(hash['commit'])
-      super(hash)
+
+    def self.build(source)
+      if source.is_a?(Hash)
+        Semaphoreapp::BranchStatus.new(
+          source.dup.tap do |hash|
+            hash['commit'] = Semaphoreapp::Commit.build(hash['commit'])
+          end
+        )
+      elsif source.is_a?(Array)
+        source.map{ |branch_status| Semaphoreapp::BranchStatus.build(branch_status) }
+      end
     end
 
-    def self.all_from_hash(hash)
-      hash.map{ |status| BranchStatus.new(status) }
-    end
   end
 end

@@ -1,12 +1,17 @@
 module Semaphoreapp
   class Build < OpenStruct
-    def initialize(hash)
-      hash['commit'] = Semaphoreapp::Commit.from_hash(hash['commit'])
-      super(hash)
+
+    def self.build(source)
+      if source.is_a?(Hash)
+        Semaphoreapp::Build.new(
+          source.dup.tap do |hash|
+            hash['commit'] = Semaphoreapp::Commit.build(hash['commit'])
+          end
+        )
+      elsif source.is_a?(Array)
+        source.map{ |build| Semaphoreapp::Build.build(build) }
+      end
     end
 
-    def self.all_from_hash(hash)
-      hash.map{ |build| Semaphoreapp::Build.new(build) }
-    end
   end
 end
