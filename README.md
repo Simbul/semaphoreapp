@@ -63,7 +63,7 @@ Note that all the class methods for `Branch` require the hash id of the project 
 To get a specific branch (based on its name):
 
 ```ruby
-branch = Semaphoreapp::Branch.find_by_name('3f1004b8343faabda63d441734526c854380ab89', 'testapp-sphinx')
+branch = Semaphoreapp::Branch.find_by_name('3f1004b8343faabda63d441734526c854380ab89', 'master')
 ```
 
 Once you have a branch, you can get its current status:
