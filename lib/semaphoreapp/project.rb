@@ -1,5 +1,5 @@
 module Semaphoreapp
-  class Project < OpenStruct
+  class Project < Base
 
     def get_branches
       Semaphoreapp::Branch.all_by_project_hash_id(hash_id)
@@ -21,15 +21,12 @@ module Semaphoreapp
       all.find{ |project| project.name == name }
     end
 
-    def self.build(source)
-      if source.is_a?(Hash)
-        Semaphoreapp::Project.new(
-          source.dup.tap do |hash|
-            hash['branches'] = Semaphoreapp::BranchStatus.build(hash['branches'])
-          end
-        )
-      elsif source.is_a?(Array)
-        source.map{ |project| Semaphoreapp::Project.build(project) }
+
+    private
+
+    def self.build_from_hash(project)
+      super do |hash|
+        hash['branches'] = Semaphoreapp::BranchStatus.build(hash['branches'])
       end
     end
 

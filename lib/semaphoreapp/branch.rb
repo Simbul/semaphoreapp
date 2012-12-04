@@ -1,5 +1,5 @@
 module Semaphoreapp
-  class Branch < OpenStruct
+  class Branch < Base
 
     def get_status
       Semaphoreapp::BranchStatus.build( Semaphoreapp::JsonApi.get_branch_status(project_hash_id, id) )
@@ -26,28 +26,18 @@ module Semaphoreapp
       build(project_hash_id, Semaphoreapp::JsonApi.get_branches(project_hash_id))
     end
 
-    def self.build(project_hash_id, source)
-      if source.is_a?(Hash)
-        build_from_hash(project_hash_id, source)
-      elsif source.is_a?(Array)
-        build_from_array(project_hash_id, source)
-      end
+    def self.build(source, project_hash_id)
+      super(source, project_hash_id)
     end
 
 
     private
 
-    def self.build_from_hash(project_hash_id, branch)
-      Semaphoreapp::Branch.new(
-          branch.dup.tap do |hash|
-            hash['project_hash_id'] = project_hash_id
-            hash['commit'] = Semaphoreapp::Commit.build(hash['commit'])
-          end
-        )
-    end
-
-    def self.build_from_array(project_hash_id, branches)
-      branches.map{ |branch| Semaphoreapp::Branch.build(project_hash_id, branch) }
+    def self.build_from_hash(branch, project_hash_id)
+      super(branch) do |hash|
+        hash['project_hash_id'] = project_hash_id
+        hash['commit'] = Semaphoreapp::Commit.build(hash['commit'])
+      end
     end
 
   end

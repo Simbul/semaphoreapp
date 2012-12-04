@@ -6,6 +6,7 @@ require 'json'
 require 'ostruct'
 
 require "semaphoreapp/api"
+require "semaphoreapp/base"
 require "semaphoreapp/branch"
 require "semaphoreapp/branch_status"
 require "semaphoreapp/build"

@@ -9,10 +9,10 @@ describe Semaphoreapp::Branch do
 
       let(:test_hash){ fixture(:branches).first }
 
-      subject{ Semaphoreapp::Branch.build(project_hash_id, test_hash) }
+      subject{ Semaphoreapp::Branch.build(test_hash, project_hash_id) }
 
       it "should call build_from_hash" do
-        Semaphoreapp::Branch.should_receive(:build_from_hash).with(project_hash_id, test_hash)
+        Semaphoreapp::Branch.should_receive(:build_from_hash).with(test_hash, project_hash_id)
         subject
       end
 
@@ -21,10 +21,10 @@ describe Semaphoreapp::Branch do
     context "with an array" do
 
       let(:test_array){ fixture(:branches) }
-      subject{ Semaphoreapp::Branch.build(project_hash_id, test_array) }
+      subject{ Semaphoreapp::Branch.build(test_array, project_hash_id) }
 
       it "should call build_from_array" do
-        Semaphoreapp::Branch.should_receive(:build_from_array).with(project_hash_id, test_array)
+        Semaphoreapp::Branch.should_receive(:build_from_array).with(test_array, project_hash_id)
         subject
       end
 
@@ -35,7 +35,7 @@ describe Semaphoreapp::Branch do
   describe ".build_from_hash" do
 
     let(:test_hash){ fixture(:branches).first }
-    subject{ Semaphoreapp::Branch.build_from_hash(project_hash_id, test_hash) }
+    subject{ Semaphoreapp::Branch.build_from_hash(test_hash, project_hash_id) }
 
     it{ should be_an_instance_of Semaphoreapp::Branch }
 
@@ -50,13 +50,13 @@ describe Semaphoreapp::Branch do
   describe ".build_from_array" do
 
     let(:test_array){ fixture(:branches) }
-    subject{ Semaphoreapp::Branch.build_from_array(project_hash_id, test_array) }
+    subject{ Semaphoreapp::Branch.build_from_array(test_array, project_hash_id) }
 
     it{ should be_an_instance_of Array }
 
     it "should call build_from_hash for all the hashes in the array" do
       test_array.each do |test_hash|
-        Semaphoreapp::Branch.should_receive(:build_from_hash).with(project_hash_id, test_hash)
+        Semaphoreapp::Branch.should_receive(:build_from_hash).with(test_hash, project_hash_id)
       end
 
       subject
