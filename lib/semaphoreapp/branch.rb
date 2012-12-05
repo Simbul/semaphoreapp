@@ -36,7 +36,6 @@ module Semaphoreapp
     def self.build_from_hash(branch, project_hash_id)
       super(branch) do |hash|
         hash['project_hash_id'] = project_hash_id
-        hash['commit'] = Semaphoreapp::Commit.build(hash['commit'])
       end
     end
 

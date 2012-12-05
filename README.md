@@ -84,7 +84,7 @@ The gem uses classes to represent objects returned by API calls. The classes are
 
 * `Project`: a project Semaphore is running CI for. It may have many `BranchStatus` objects.
 * `BranchStatus`: the status of a branch in a project. It may have a `Commit` object.
-* `Branch`: a branch in a project. It may have a `Commit` object.
+* `Branch`: a branch in a project.
 * `Build`: a CI build. It may have a `Commit` object.
 * `Commit`: a Git commit.
 
