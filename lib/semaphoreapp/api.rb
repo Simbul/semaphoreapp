@@ -1,5 +1,7 @@
 module Semaphoreapp
   class Api
+    class Error < RuntimeError; end
+
     BASE_URL = 'https://semaphoreapp.com'
     API_URL = 'api/v1'
 
