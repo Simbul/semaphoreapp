@@ -16,6 +16,7 @@ require "semaphoreapp/project"
 require "semaphoreapp/version"
 
 module Semaphoreapp
+  @@debug = false
 
   def self.auth_token= auth_token
     @@auth_token = auth_token
@@ -23,6 +24,14 @@ module Semaphoreapp
 
   def self.auth_token
     @@auth_token
+  end
+
+  def self.debug= debug
+    @@debug = debug
+  end
+
+  def self.debug?
+    @@debug
   end
 
 end

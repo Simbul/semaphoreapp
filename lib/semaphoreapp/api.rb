@@ -49,6 +49,7 @@ module Semaphoreapp
     def self.send_request url
       https = setup_https(BASE_URL)
       https.start do |session|
+        puts url if Semaphoreapp.debug?
         req = Net::HTTP::Get.new(url)
         session.request(req)
       end
