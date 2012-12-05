@@ -65,10 +65,13 @@ describe Semaphoreapp::Branch do
   end
 
   describe ".all_by_project_hash_id" do
+
     let(:hash_id) { ':hash_id' }
     let(:branches) { fixture(:branches) }
-    subject{ Semaphoreapp::Branch.all_by_project_hash_id(hash_id) }
     before{ Semaphoreapp::JsonApi.stub(:get_branches).and_return(branches) }
+    subject{ Semaphoreapp::Branch.all_by_project_hash_id(hash_id) }
+
+    it{ should be_an_instance_of Array }
 
     it "should get branches JSON from the API" do
       Semaphoreapp::JsonApi.should_receive(:get_branches).with(hash_id)
@@ -80,7 +83,53 @@ describe Semaphoreapp::Branch do
       subject
     end
 
-    it{ should be_an_instance_of Array }
+  end
+
+  describe ".find" do
+
+    let(:branches){ Semaphoreapp::Branch.build(fixture(:branches), ':hash_id') }
+    let(:expected_branch) { branches.first }
+    before{ Semaphoreapp::Branch.stub(:all_by_project_hash_id).with(':hash_id').and_return(branches) }
+    subject{ Semaphoreapp::Branch.find(':hash_id', expected_branch.id) }
+
+    it{ should be_an_instance_of Semaphoreapp::Branch }
+    it "should return the Branch object with the specified branch_id" do
+      subject.should == expected_branch
+    end
+
+    context "with the wrong branch_id" do
+      subject{ Semaphoreapp::Branch.find(':hash_id', ':wrong_id') }
+      it{ should be_nil }
+    end
+
+  end
+
+  describe ".find_by_name" do
+
+    let(:branches){ Semaphoreapp::Branch.build(fixture(:branches), ':hash_id') }
+    let(:expected_branch) { branches.first }
+    before{ Semaphoreapp::Branch.stub(:all_by_project_hash_id).with(':hash_id').and_return(branches) }
+    subject{ Semaphoreapp::Branch.find_by_name(':hash_id', expected_branch.name) }
+
+    it{ should be_an_instance_of Semaphoreapp::Branch }
+    it "should return the Branch object with the specified name" do
+      subject.should == expected_branch
+    end
+
+    context "with the wrong name" do
+      subject{ Semaphoreapp::Branch.find_by_name(':hash_id', ':wrong_name') }
+      it{ should be_nil }
+    end
+
+  end
+
+  describe ".find_master" do
+    subject{ Semaphoreapp::Branch.find_master(':hash_id') }
+
+    it "should find the branch named 'master'" do
+      Semaphoreapp::Branch.should_receive(:find_by_name).with(anything(), 'master')
+      subject
+    end
   end
 
 end
