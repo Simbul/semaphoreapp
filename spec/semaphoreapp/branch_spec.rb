@@ -64,4 +64,23 @@ describe Semaphoreapp::Branch do
 
   end
 
+  describe ".all_by_project_hash_id" do
+    let(:hash_id) { ':hash_id' }
+    let(:branches) { fixture(:branches) }
+    subject{ Semaphoreapp::Branch.all_by_project_hash_id(hash_id) }
+    before{ Semaphoreapp::JsonApi.stub(:get_branches).and_return(branches) }
+
+    it "should get branches JSON from the API" do
+      Semaphoreapp::JsonApi.should_receive(:get_branches).with(hash_id)
+      subject
+    end
+
+    it "should call Branch.build with an array of branches" do
+      Semaphoreapp::Branch.should_receive(:build).with(branches, hash_id)
+      subject
+    end
+
+    it{ should be_an_instance_of Array }
+  end
+
 end

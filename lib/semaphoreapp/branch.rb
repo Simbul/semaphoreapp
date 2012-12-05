@@ -23,7 +23,7 @@ module Semaphoreapp
     end
 
     def self.all_by_project_hash_id(project_hash_id)
-      build(project_hash_id, Semaphoreapp::JsonApi.get_branches(project_hash_id))
+      build(Semaphoreapp::JsonApi.get_branches(project_hash_id), project_hash_id)
     end
 
     def self.build(source, project_hash_id)
