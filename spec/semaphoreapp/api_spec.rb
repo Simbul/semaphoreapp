@@ -9,6 +9,12 @@ describe Semaphoreapp::Api do
     it "should append auth_token to the given URL" do
       subject.url_with_auth_token('test_url').should == '/test_url?auth_token=test_token'
     end
+
+    context "with a page" do
+      it "should append page to the given URL" do
+        subject.url_with_auth_token('test_url', :page => ':page').should == '/test_url?auth_token=test_token&page=:page'
+      end
+    end
   end
 
   describe "URL generators" do
@@ -31,6 +37,11 @@ describe Semaphoreapp::Api do
       subject{ Semaphoreapp::Api.branch_history_url(':hash_id', ':id') }
       it{ should start_with '/api_url/projects/:hash_id/:id' }
       it{ should end_with '?auth_token=test_token' }
+
+      context "with a page" do
+        subject{ Semaphoreapp::Api.branch_history_url(':hash_id', ':id', :page => ':page') }
+        it{ should include 'page=:page' }
+      end
     end
 
     describe ".branch_status_url" do
@@ -90,7 +101,7 @@ describe Semaphoreapp::Api do
 
     describe ".get_branch_history" do
       it "should send a request to branch_history_url" do
-        Semaphoreapp::Api.should_receive(:branch_history_url).with(':hash_id', ':id').and_return('branch_history_url')
+        Semaphoreapp::Api.should_receive(:branch_history_url).with(':hash_id', ':id', {}).and_return('branch_history_url')
         Semaphoreapp::Api.should_receive(:send_request).with('branch_history_url').and_return(response)
 
         Semaphoreapp::Api.get_branch_history(':hash_id', ':id')
@@ -105,6 +116,13 @@ describe Semaphoreapp::Api do
         it "should set the auth_token" do
           Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
           Semaphoreapp::Api.get_branch_history(':hash_id', ':id', :auth_token => 'test_token')
+        end
+      end
+
+      context "with page" do
+        it "should request the specified page" do
+          Semaphoreapp::Api.should_receive(:branch_history_url).with(':hash_id', ':id', :page => ':page').and_return('branch_history_url')
+          Semaphoreapp::Api.get_branch_history(':hash_id', ':id', :page => ':page')
         end
       end
     end

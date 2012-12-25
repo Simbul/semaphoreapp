@@ -17,7 +17,7 @@ module Semaphoreapp
 
     def self.get_branch_history(project_hash_id, id, options={})
       set_auth_token(options)
-      send_request(branch_history_url(project_hash_id, id)).body
+      send_request(branch_history_url(project_hash_id, id, options)).body
     end
 
     def self.get_branch_status(project_hash_id, id, options={})
@@ -33,16 +33,18 @@ module Semaphoreapp
       url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/branches")
     end
 
-    def self.branch_history_url(project_hash_id, id)
-      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}")
+    def self.branch_history_url(project_hash_id, id, options={})
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}", options)
     end
 
     def self.branch_status_url(project_hash_id, id)
       url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/status")
     end
 
-    def self.url_with_auth_token(url)
-      "/#{url}?auth_token=#{Semaphoreapp.auth_token}"
+    def self.url_with_auth_token(url, options={})
+      "/#{url}?auth_token=#{Semaphoreapp.auth_token}" << begin
+        options[:page].nil? ? '' : "&page=#{options[:page]}"
+      end
     end
 
 
