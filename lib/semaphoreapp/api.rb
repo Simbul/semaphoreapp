@@ -5,23 +5,23 @@ module Semaphoreapp
     BASE_URL = 'https://semaphoreapp.com'
     API_URL = 'api/v1'
 
-    def self.get_projects(auth_token=nil)
-      set_auth_token(auth_token)
+    def self.get_projects(options={})
+      set_auth_token(options)
       send_request(projects_url).body
     end
 
-    def self.get_branches(project_hash_id, auth_token=nil)
-      set_auth_token(auth_token)
+    def self.get_branches(project_hash_id, options={})
+      set_auth_token(options)
       send_request(branches_url(project_hash_id)).body
     end
 
-    def self.get_branch_history(project_hash_id, id, auth_token=nil)
-      set_auth_token(auth_token)
+    def self.get_branch_history(project_hash_id, id, options={})
+      set_auth_token(options)
       send_request(branch_history_url(project_hash_id, id)).body
     end
 
-    def self.get_branch_status(project_hash_id, id, auth_token=nil)
-      set_auth_token(auth_token)
+    def self.get_branch_status(project_hash_id, id, options={})
+      set_auth_token(options)
       send_request(branch_status_url(project_hash_id, id)).body
     end
 
@@ -65,8 +65,8 @@ module Semaphoreapp
       return https
     end
 
-    def self.set_auth_token(auth_token)
-      Semaphoreapp.auth_token = auth_token unless auth_token.nil?
+    def self.set_auth_token(options)
+      Semaphoreapp.auth_token = options[:auth_token] unless options[:auth_token].nil?
     end
   end
 end

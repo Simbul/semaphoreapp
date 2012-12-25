@@ -55,14 +55,14 @@ describe Semaphoreapp::Api do
       end
 
       it "should not overwrite the auth_token" do
-        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
         Semaphoreapp::Api.get_projects
       end
 
       context "with auth_token" do
         it "should set the auth_token" do
-          Semaphoreapp::Api.should_receive(:set_auth_token).with('test_token')
-          Semaphoreapp::Api.get_projects('test_token')
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_projects(:auth_token => 'test_token')
         end
       end
     end
@@ -76,14 +76,14 @@ describe Semaphoreapp::Api do
       end
 
       it "should not overwrite the auth_token" do
-        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
         Semaphoreapp::Api.get_branches(':hash_id')
       end
 
       context "with auth_token" do
         it "should set the auth_token" do
-          Semaphoreapp::Api.should_receive(:set_auth_token).with('test_token')
-          Semaphoreapp::Api.get_branches(':hash_id', 'test_token')
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_branches(':hash_id', :auth_token => 'test_token')
         end
       end
     end
@@ -97,14 +97,14 @@ describe Semaphoreapp::Api do
       end
 
       it "should not overwrite the auth_token" do
-        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
         Semaphoreapp::Api.get_branch_history(':hash_id', ':id')
       end
 
       context "with auth_token" do
         it "should set the auth_token" do
-          Semaphoreapp::Api.should_receive(:set_auth_token).with('test_token')
-          Semaphoreapp::Api.get_branch_history(':hash_id', ':id', 'test_token')
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_branch_history(':hash_id', ':id', :auth_token => 'test_token')
         end
       end
     end
@@ -118,14 +118,14 @@ describe Semaphoreapp::Api do
       end
 
       it "should not overwrite the auth_token" do
-        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
         Semaphoreapp::Api.get_branch_status(':hash_id', ':id')
       end
 
       context "with auth_token" do
         it "should set the auth_token" do
-          Semaphoreapp::Api.should_receive(:set_auth_token).with('test_token')
-          Semaphoreapp::Api.get_branch_status(':hash_id', ':id', 'test_token')
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_branch_status(':hash_id', ':id', :auth_token => 'test_token')
         end
       end
     end
