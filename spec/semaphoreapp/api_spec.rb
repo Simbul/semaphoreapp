@@ -54,6 +54,11 @@ describe Semaphoreapp::Api do
         Semaphoreapp::Api.get_projects
       end
 
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
+        Semaphoreapp::Api.get_projects
+      end
+
       context "with auth_token" do
         it "should set the auth_token" do
           Semaphoreapp::Api.should_receive(:set_auth_token).with('test_token')
@@ -67,6 +72,11 @@ describe Semaphoreapp::Api do
         Semaphoreapp::Api.should_receive(:branches_url).with(':hash_id').and_return('branches_url')
         Semaphoreapp::Api.should_receive(:send_request).with('branches_url').and_return(response)
 
+        Semaphoreapp::Api.get_branches(':hash_id')
+      end
+
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
         Semaphoreapp::Api.get_branches(':hash_id')
       end
 
@@ -86,6 +96,11 @@ describe Semaphoreapp::Api do
         Semaphoreapp::Api.get_branch_history(':hash_id', ':id')
       end
 
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
+        Semaphoreapp::Api.get_branch_history(':hash_id', ':id')
+      end
+
       context "with auth_token" do
         it "should set the auth_token" do
           Semaphoreapp::Api.should_receive(:set_auth_token).with('test_token')
@@ -99,6 +114,11 @@ describe Semaphoreapp::Api do
         Semaphoreapp::Api.should_receive(:branch_status_url).with(':hash_id', ':id').and_return('branch_status_url')
         Semaphoreapp::Api.should_receive(:send_request).with('branch_status_url').and_return(response)
 
+        Semaphoreapp::Api.get_branch_status(':hash_id', ':id')
+      end
+
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with(nil)
         Semaphoreapp::Api.get_branch_status(':hash_id', ':id')
       end
 
