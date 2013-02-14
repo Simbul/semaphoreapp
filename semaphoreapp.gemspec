@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["webmaster@simbul.net"]
   gem.description   = %q{A client for the Semaphore API}
   gem.summary       = %q{A client for the Semaphore API}
-  gem.homepage      = ""
+  gem.homepage      = "http://github.com/Simbul/semaphoreapp"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
