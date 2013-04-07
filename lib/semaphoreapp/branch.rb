@@ -7,7 +7,7 @@ module Semaphoreapp
 
     def get_builds
       history = Semaphoreapp::JsonApi.get_branch_history(project_hash_id, id)
-      Semaphoreapp::Build.build(history['builds'])
+      Semaphoreapp::Build.build(history['builds'], project_hash_id, id)
     end
 
     def self.find(project_hash_id, branch_id)

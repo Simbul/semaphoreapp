@@ -12,7 +12,7 @@ module Semaphoreapp
 
     private
 
-    def self.build_from_hash(source_hash, &block)
+    def self.build_from_hash(source_hash, *params, &block)
       self.new(
         source_hash.dup.tap do |hash|
           block.call(hash) unless block.nil?
