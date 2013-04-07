@@ -20,6 +20,10 @@ module Semaphoreapp
       raise_if_error(JSON.parse(super))
     end
 
+    def self.get_build_log(project_hash_id, id, build_number, options={})
+      raise_if_error(JSON.parse(super))
+    end
+
 
     private
 

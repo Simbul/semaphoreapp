@@ -30,6 +30,11 @@ module Semaphoreapp
       send_request(build_information_url(project_hash_id, id, build_number)).body
     end
 
+    def self.get_build_log(project_hash_id, id, build_number, options={})
+      set_auth_token(options)
+      send_request(build_log_url(project_hash_id, id, build_number)).body
+    end
+
     def self.projects_url
       url_with_auth_token("#{API_URL}/projects")
     end
@@ -48,6 +53,10 @@ module Semaphoreapp
 
     def self.build_information_url(project_hash_id, id, build_number)
       url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/builds/#{build_number}")
+    end
+
+    def self.build_log_url(project_hash_id, id, build_number)
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/builds/#{build_number}/log")
     end
 
     def self.url_with_auth_token(url, options={})

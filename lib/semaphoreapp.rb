@@ -11,9 +11,12 @@ require "semaphoreapp/branch"
 require "semaphoreapp/branch_status"
 require "semaphoreapp/build"
 require "semaphoreapp/build_information"
+require "semaphoreapp/build_log"
+require "semaphoreapp/command"
 require "semaphoreapp/commit"
 require "semaphoreapp/json_api"
 require "semaphoreapp/project"
+require "semaphoreapp/thread"
 require "semaphoreapp/version"
 
 module Semaphoreapp
