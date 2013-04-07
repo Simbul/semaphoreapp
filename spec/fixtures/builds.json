@@ -1,6 +1,7 @@
 [
   {
-    "build_url": "http://semaphoreapp.com/projects/57/branches/80/builds/46",
+    "build_url": "https://semaphoreapp.com/projects/57/branches/80/builds/46",
+    "build_info_url": "https://semaphoreapp.com/api/v1/projects/649e584dc507ca4b73e1374d3125ef0b567a949c/80/builds/1?auth_token=Yds3w6o26FLfJTnVK2y9",
     "build_number": 46,
     "result": "failed",
     "started_at": "2012-10-02T15:01:41Z",
@@ -15,7 +16,8 @@
     }
   },
   {
-    "build_url": "http://semaphoreapp.com/projects/57/branches/80/builds/45",
+    "build_url": "https://semaphoreapp.com/projects/57/branches/80/builds/45",
+    "build_info_url": "https://semaphoreapp.com/api/v1/projects/649e584dc507ca4b73e1374d3125ef0b567a949c/80/builds/1?auth_token=Yds3w6o26FLfJTnVK2y9",
     "build_number": 45,
     "result": "passed",
     "started_at": "2012-10-02T14:47:06Z",

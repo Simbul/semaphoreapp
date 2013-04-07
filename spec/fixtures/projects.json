@@ -9,11 +9,12 @@
     "branches": [
       {
         "branch_name": "master",
-        "branch_url": "http://10.0.1.76:3000/projects/61/branches/85",
-        "branch_status_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85/status?auth_token=Yds3w6o26FLfJTnVK2y9",
-        "branch_history_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85?auth_token=Yds3w6o26FLfJTnVK2y9",
+        "branch_url": "https://semaphoreapp.com/projects/61/branches/85",
+        "branch_status_url": "https://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85/status?auth_token=Yds3w6o26FLfJTnVK2y9",
+        "branch_history_url": "https://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85?auth_token=Yds3w6o26FLfJTnVK2y9",
         "project_name": "testapp-sphinx",
-        "build_url": "http://10.0.1.76:3000/projects/61/branches/85/builds/1",
+        "build_url": "https://semaphoreapp.com/projects/61/branches/85/builds/1",
+        "build_info_url": "https://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85/builds/1?auth_token=Yds3w6o26FLfJTnVK2y9",
         "build_number": 1,
         "result": "passed",
         "started_at": "2012-09-04T11:55:07Z",
@@ -31,11 +32,12 @@
     "branches": [
       {
         "branch_name": "mongoid3",
-        "branch_url": "http://10.0.1.76:3000/projects/63/branches/89",
-        "branch_status_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85/status?auth_token=Yds3w6o26FLfJTnVK2y9",
-        "branch_history_url": "http://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85?auth_token=Yds3w6o26FLfJTnVK2y9",
+        "branch_url": "https://semaphoreapp.com/projects/63/branches/89",
+        "branch_status_url": "https://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85/status?auth_token=Yds3w6o26FLfJTnVK2y9",
+        "branch_history_url": "https://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85?auth_token=Yds3w6o26FLfJTnVK2y9",
         "project_name": "testapp-mongodb",
-        "build_url": "http://10.0.1.76:3000/projects/63/branches/89/builds/3",
+        "build_url": "https://semaphoreapp.com/projects/63/branches/89/builds/3",
+        "build_info_url": "https://semaphoreapp.com/api/v1/projects/3f1004b8343faabda63d441734526c854380ab89/85/builds/1?auth_token=Yds3w6o26FLfJTnVK2y9",
         "build_number": 3,
         "result": "passed",
         "started_at": "2012-09-14T11:11:39Z",
