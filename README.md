@@ -78,6 +78,30 @@ or its build history:
 branch.get_builds
 ```
 
+### Builds
+
+Note that the following examples assume you already have a `build` object, which you can obtain by doing something like:
+
+```ruby
+build = Semaphoreapp::Branch.find_by_name('3f1004b8343faabda63d441734526c854380ab89', 'master').get_builds.first
+```
+
+To get the build information:
+
+```ruby
+build.get_information
+```
+
+This will return a `BuildInformation` instance which in turn contains a list of `Commit` instances.
+
+To get the build log:
+
+```ruby
+build.get_log
+```
+
+This will return a `BuildLog` instance which in turn contains a list of `Thread` instances. Each of the threads contains a list of `Command` instances.
+
 ## Object model
 
 The gem uses classes to represent objects returned by API calls. The classes are:
@@ -87,6 +111,10 @@ The gem uses classes to represent objects returned by API calls. The classes are
 * `Branch`: a branch in a project.
 * `Build`: a CI build. It may have a `Commit` object.
 * `Commit`: a Git commit.
+* `BuildInformation`: the information related to a build. It may have many `Commit` objects.
+* `BuildLog`: the log for a build. It may have many `Thread` objects.
+* `Thread`: a build thread. It may have many `Command` objects.
+* `Command`: a command in a build thread.
 
 ## Tests
 
