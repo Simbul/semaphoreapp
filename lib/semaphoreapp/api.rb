@@ -25,6 +25,11 @@ module Semaphoreapp
       send_request(branch_status_url(project_hash_id, id)).body
     end
 
+    def self.get_build_information(project_hash_id, id, build_number, options={})
+      set_auth_token(options)
+      send_request(build_information_url(project_hash_id, id, build_number)).body
+    end
+
     def self.projects_url
       url_with_auth_token("#{API_URL}/projects")
     end
@@ -39,6 +44,10 @@ module Semaphoreapp
 
     def self.branch_status_url(project_hash_id, id)
       url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/status")
+    end
+
+    def self.build_information_url(project_hash_id, id, build_number)
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/builds/#{build_number}")
     end
 
     def self.url_with_auth_token(url, options={})

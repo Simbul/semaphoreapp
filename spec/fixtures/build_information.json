@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "id": "47b51ec00ce04dd78fdefe65428e4216580ce89a",
+      "url": "https://github.com/renderedtext/base-app/commit/47b51ec00ce04dd78fdefe65428e4216580ce89a",
+      "author_name": "Marko Anastasov",
+      "author_email": "marko@renderedtext.com",
+      "message": "Update cucumber and related stuff.",
+      "timestamp": "2013-03-18T09:59:29Z"
+    }
+  ],
+  "project_name": "base-app",
+  "branch_name": "master",
+  "number": 1,
+  "result": "passed",
+  "created_at": "2013-03-18T10:40:13Z",
+  "updated_at": "2013-03-18T10:51:27Z",
+  "started_at": "2013-03-18T10:40:20Z",
+  "finished_at": "2013-03-18T10:51:26Z",
+  "html_url": "https://semaphoreapp.com/projects/653/branches/4204/builds/26"
+}
