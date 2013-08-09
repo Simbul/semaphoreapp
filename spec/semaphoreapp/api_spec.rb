@@ -50,6 +50,41 @@ describe Semaphoreapp::Api do
       it{ should end_with '?auth_token=test_token' }
     end
 
+    describe ".servers_url" do
+      subject{ Semaphoreapp::Api.servers_url(':hash_id') }
+      it{ should start_with '/api_url/projects/:hash_id/servers' }
+      it{ should end_with '?auth_token=test_token' }
+    end
+
+    describe ".server_status_url" do
+      subject{ Semaphoreapp::Api.server_status_url(':hash_id', ':id') }
+      it{ should start_with '/api_url/projects/:hash_id/servers/:id/status' }
+      it{ should end_with '?auth_token=test_token' }
+    end
+
+    describe ".server_history_url" do
+      subject{ Semaphoreapp::Api.server_history_url(':hash_id', ':id') }
+      it{ should start_with '/api_url/projects/:hash_id/servers/:id' }
+      it{ should end_with '?auth_token=test_token' }
+
+      context "with a page" do
+        subject{ Semaphoreapp::Api.server_history_url(':hash_id', ':id', :page => ':page') }
+        it{ should include 'page=:page' }
+      end
+    end
+
+    describe ".deploy_information_url" do
+      subject{ Semaphoreapp::Api.deploy_information_url(':hash_id', ':id', ':deploy_number') }
+      it{ should start_with '/api_url/projects/:hash_id/servers/:id/deploys/:deploy_number' }
+      it{ should end_with '?auth_token=test_token' }
+    end
+
+    describe ".deploy_log_url" do
+      subject{ Semaphoreapp::Api.deploy_log_url(':hash_id', ':id', ':deploy_number') }
+      it{ should start_with '/api_url/projects/:hash_id/servers/:id/deploys/:deploy_number/log' }
+      it{ should end_with '?auth_token=test_token' }
+    end
+
   end
 
   describe "getters" do
@@ -144,6 +179,118 @@ describe Semaphoreapp::Api do
         it "should set the auth_token" do
           Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
           Semaphoreapp::Api.get_branch_status(':hash_id', ':id', :auth_token => 'test_token')
+        end
+      end
+    end
+
+    describe ".get_servers" do
+      it "should send a request to servers_url" do
+        Semaphoreapp::Api.should_receive(:servers_url).with(':hash_id').and_return('servers_url')
+        Semaphoreapp::Api.should_receive(:send_request).with('servers_url').and_return(response)
+
+        Semaphoreapp::Api.get_servers(':hash_id')
+      end
+
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
+        Semaphoreapp::Api.get_servers(':hash_id')
+      end
+
+      context "with auth_token" do
+        it "should set the auth_token" do
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_servers(':hash_id', :auth_token => 'test_token')
+        end
+      end
+    end
+
+    describe ".get_server_status" do
+      it "should send a request to server_status_url" do
+        Semaphoreapp::Api.should_receive(:server_status_url).with(':hash_id', ':id').and_return('server_status_url')
+        Semaphoreapp::Api.should_receive(:send_request).with('server_status_url').and_return(response)
+
+        Semaphoreapp::Api.get_server_status(':hash_id', ':id')
+      end
+
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
+        Semaphoreapp::Api.get_server_status(':hash_id', ':id')
+      end
+
+      context "with auth_token" do
+        it "should set the auth_token" do
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_server_status(':hash_id', ':id', :auth_token => 'test_token')
+        end
+      end
+    end
+
+    describe ".get_server_history" do
+      it "should send a request to server_history_url" do
+        Semaphoreapp::Api.should_receive(:server_history_url).with(':hash_id', ':id', {}).and_return('server_history_url')
+        Semaphoreapp::Api.should_receive(:send_request).with('server_history_url').and_return(response)
+
+        Semaphoreapp::Api.get_server_history(':hash_id', ':id')
+      end
+
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
+        Semaphoreapp::Api.get_server_history(':hash_id', ':id')
+      end
+
+      context "with auth_token" do
+        it "should set the auth_token" do
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_server_history(':hash_id', ':id', :auth_token => 'test_token')
+        end
+      end
+
+      context "with page" do
+        it "should request the specified page" do
+          Semaphoreapp::Api.should_receive(:server_history_url).with(':hash_id', ':id', :page => ':page').and_return('server_history_url')
+          Semaphoreapp::Api.get_server_history(':hash_id', ':id', :page => ':page')
+        end
+      end
+    end
+
+    describe ".get_deploy_information" do
+      it "should send a request to deploy_information_url" do
+        Semaphoreapp::Api.should_receive(:deploy_information_url).with(':hash_id', ':id', ':deploy_number').and_return('deploy_information_url')
+        Semaphoreapp::Api.should_receive(:send_request).with('deploy_information_url').and_return(response)
+
+        Semaphoreapp::Api.get_deploy_information(':hash_id', ':id', ':deploy_number')
+      end
+
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
+        Semaphoreapp::Api.get_deploy_information(':hash_id', ':id', ':deploy_number')
+      end
+
+      context "with auth_token" do
+        it "should set the auth_token" do
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_deploy_information(':hash_id', ':id', ':deploy_number', :auth_token => 'test_token')
+        end
+      end
+    end
+
+    describe ".get_deploy_log" do
+      it "should send a request to deploy_log_url" do
+        Semaphoreapp::Api.should_receive(:deploy_log_url).with(':hash_id', ':id', ':deploy_number').and_return('deploy_log_url')
+        Semaphoreapp::Api.should_receive(:send_request).with('deploy_log_url').and_return(response)
+
+        Semaphoreapp::Api.get_deploy_log(':hash_id', ':id', ':deploy_number')
+      end
+
+      it "should not overwrite the auth_token" do
+        Semaphoreapp::Api.should_receive(:set_auth_token).with({})
+        Semaphoreapp::Api.get_deploy_log(':hash_id', ':id', ':deploy_number')
+      end
+
+      context "with auth_token" do
+        it "should set the auth_token" do
+          Semaphoreapp::Api.should_receive(:set_auth_token).with(hash_including(:auth_token => 'test_token'))
+          Semaphoreapp::Api.get_deploy_log(':hash_id', ':id', ':deploy_number', :auth_token => 'test_token')
         end
       end
     end
