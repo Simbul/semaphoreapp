@@ -16,6 +16,7 @@ require "semaphoreapp/command"
 require "semaphoreapp/commit"
 require "semaphoreapp/json_api"
 require "semaphoreapp/project"
+require "semaphoreapp/server_status"
 require "semaphoreapp/thread"
 require "semaphoreapp/version"
 
