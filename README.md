@@ -115,6 +115,11 @@ The gem uses classes to represent objects returned by API calls. The classes are
 * `BuildLog`: the log for a build. It may have many `Thread` objects.
 * `Thread`: a build thread. It may have many `Command` objects.
 * `Command`: a command in a build thread.
+* `Server`: a server a project can be deployed to.
+* `ServerStatus`: the status of a server in a project. It may have a `Commit` object. 
+* `Deploy`: a deploy to a server. It may have a `Commit` object.
+* `DeployInformation`: the information related to a deploy. It may have a `Commit` object.
+* `DeployLog`: the log for a deploy. It may have many `Thread` objects.
 
 ## Tests
 
