@@ -5,6 +5,10 @@ module Semaphoreapp
       Semaphoreapp::Branch.all_by_project_hash_id(hash_id)
     end
 
+    def get_servers
+      Semaphoreapp::Server.all_by_project_hash_id(hash_id)
+    end
+
     def master_branch_status
       branches.find{ |branch_status| branch_status.branch_name == 'master'}
     end
