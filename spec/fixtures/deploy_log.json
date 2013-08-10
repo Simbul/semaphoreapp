@@ -1,0 +1,26 @@
+{
+    "threads": [
+        {
+            "number": 1,
+            "commands": [
+                {
+                    "name": "bundle install --path vendor/bundle",
+                    "result": "0",
+                    "output": "Here goes long command output",
+                    "start_time": "2013-07-23T08:58:38Z",
+                    "finish_time": "2013-07-23T08:58:40Z",
+                    "duration": "00:02"
+                },
+                {
+                    "name": "bundle exec cap -S revision=$REVISION production deploy:migrations",
+                    "result": "0",
+                    "output": "Here goes long command output",
+                    "start_time": "2013-07-23T08:58:40Z",
+                    "finish_time": "2013-07-23T08:59:56Z",
+                    "duration": "01:16"
+                }
+            ]
+        }
+    ],
+    "deploy_info_url": "https://semaphoreapp.com/api/v1/projects/:hash_id/servers/11/deploys/27?auth_token=:auth_token"
+}
