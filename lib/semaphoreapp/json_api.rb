@@ -24,6 +24,25 @@ module Semaphoreapp
       raise_if_error(JSON.parse(super))
     end
 
+    def self.get_servers(project_hash_id, options={})
+      raise_if_error(JSON.parse(super))
+    end
+
+    def self.get_server_status(project_hash_id, id, options={})
+      raise_if_error(JSON.parse(super))
+    end
+
+    def self.get_server_history(project_hash_id, id, options={})
+      raise_if_error(JSON.parse(super))
+    end
+
+    def self.get_deploy_information(project_hash_id, id, deploy_number, options={})
+      raise_if_error(JSON.parse(super))
+    end
+
+    def self.get_deploy_log(project_hash_id, id, deploy_number, options={})
+      raise_if_error(JSON.parse(super))
+    end
 
     private
 
