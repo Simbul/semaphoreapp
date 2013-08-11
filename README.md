@@ -50,6 +50,12 @@ Once you have a project, you can get all its branches:
 project.get_branches
 ```
 
+You can also get all its servers:
+
+```ruby
+project.get_servers
+```
+
 Note that, due to the way the API works, the following call will return all the branch *statuses* for a given project:
 
 ```ruby
@@ -101,6 +107,52 @@ build.get_log
 ```
 
 This will return a `BuildLog` instance which in turn contains a list of `Thread` instances. Each of the threads contains a list of `Command` instances.
+
+### Servers
+
+Note that all the class methods for `Server` require the hash id of the project to be passed in as a parameter (`3f1004b8343faabda63d441734526c854380ab89` in the examples below).
+
+To get a specific server (based on its name):
+
+```ruby
+server = Semaphoreapp::Server.find_by_name('3f1004b8343faabda63d441734526c854380ab89', 'staging')
+```
+
+Once you have a server, you can get its current status:
+
+```ruby
+server.get_status
+```
+
+or its deploy history:
+
+```ruby
+server.get_deploys
+```
+
+### Deploys
+
+Note that the following examples assume you already have a `deploy` object, which you can obtain by doing something like:
+
+```ruby
+deploy = Semaphoreapp::Server.find_by_name('3f1004b8343faabda63d441734526c854380ab89', 'staging').get_deploys.first
+```
+
+To get the deploy information:
+
+```ruby
+deploy.get_information
+```
+
+This will return a `DeployInformation` instance which in turn contains a `Commit` instance.
+
+To get the deploy log:
+
+```ruby
+deploy.get_log
+```
+
+This will return a `DeployLog` instance which in turn contains a list of `Thread` instances. Each of the threads contains a list of `Command` instances.
 
 ## Object model
 
