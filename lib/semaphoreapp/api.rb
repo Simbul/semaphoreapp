@@ -2,7 +2,7 @@ module Semaphoreapp
   class Api
     class Error < RuntimeError; end
 
-    BASE_URL = 'https://semaphoreapp.com'
+    BASE_URL = 'https://semaphoreci.com'
     API_URL = 'api/v1'
 
     def self.get_projects(options={})
