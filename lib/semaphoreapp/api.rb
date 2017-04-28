@@ -35,6 +35,31 @@ module Semaphoreapp
       send_request(build_log_url(project_hash_id, id, build_number)).body
     end
 
+    def self.get_servers(project_hash_id, options={})
+      set_auth_token(options)
+      send_request(servers_url(project_hash_id)).body
+    end
+
+    def self.get_server_status(project_hash_id, id, options={})
+      set_auth_token(options)
+      send_request(server_status_url(project_hash_id, id)).body
+    end
+
+    def self.get_server_history(project_hash_id, id, options={})
+      set_auth_token(options)
+      send_request(server_history_url(project_hash_id, id, options)).body
+    end
+
+    def self.get_deploy_information(project_hash_id, id, deploy_number, options={})
+      set_auth_token(options)
+      send_request(deploy_information_url(project_hash_id, id, deploy_number)).body
+    end
+
+    def self.get_deploy_log(project_hash_id, id, deploy_number, options={})
+      set_auth_token(options)
+      send_request(deploy_log_url(project_hash_id, id, deploy_number)).body
+    end
+
     def self.projects_url
       url_with_auth_token("#{API_URL}/projects")
     end
@@ -57,6 +82,26 @@ module Semaphoreapp
 
     def self.build_log_url(project_hash_id, id, build_number)
       url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/builds/#{build_number}/log")
+    end
+
+    def self.servers_url(project_hash_id)
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/servers")
+    end
+
+    def self.server_status_url(project_hash_id, id)
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/servers/#{id}/status")
+    end
+
+    def self.server_history_url(project_hash_id, id, options={})
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/servers/#{id}", options)
+    end
+
+    def self.deploy_information_url(project_hash_id, id, deploy_number)
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/servers/#{id}/deploys/#{deploy_number}")
+    end
+
+    def self.deploy_log_url(project_hash_id, id, deploy_number)
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/servers/#{id}/deploys/#{deploy_number}/log")
     end
 
     def self.url_with_auth_token(url, options={})

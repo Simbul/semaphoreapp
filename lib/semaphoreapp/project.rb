@@ -5,6 +5,10 @@ module Semaphoreapp
       Semaphoreapp::Branch.all_by_project_hash_id(hash_id)
     end
 
+    def get_servers
+      Semaphoreapp::Server.all_by_project_hash_id(hash_id)
+    end
+
     def master_branch_status
       branches.find{ |branch_status| branch_status.branch_name == 'master'}
     end
@@ -27,6 +31,7 @@ module Semaphoreapp
     def self.build_from_hash(project)
       super do |hash|
         hash['branches'] = Semaphoreapp::BranchStatus.build(hash['branches'])
+        hash['servers'] = Semaphoreapp::ServerStatus.build(hash['servers'])
       end
     end
 

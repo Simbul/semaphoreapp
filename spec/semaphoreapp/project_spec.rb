@@ -38,7 +38,7 @@ describe Semaphoreapp::Project do
 
     it{ should be_an_instance_of Semaphoreapp::Project }
 
-    fixture(:projects).first.reject{ |key| key == 'branches' }.each do |key, value|
+    fixture(:projects).first.reject{ |key| key == 'branches' || key == 'servers' }.each do |key, value|
       it "should have attribute #{key}" do
         subject.send(key).should == value
       end
@@ -55,6 +55,20 @@ describe Semaphoreapp::Project do
       before{ test_hash.delete('branches') }
       it "should set the 'branches' attribute to nil" do
         subject.branches.should be_nil
+      end
+    end
+
+    context "with server statuses" do
+      it "should have an array of ServerStatus objects as the 'servers' attribute" do
+        subject.servers.should be_an_instance_of Array
+        subject.servers.each{ |server| server.should be_an_instance_of Semaphoreapp::ServerStatus }
+      end
+    end
+
+    context "without server statuses" do
+      before{ test_hash.delete('servers') }
+      it "should set the 'servers' attribute to nil" do
+        subject.servers.should be_nil
       end
     end
 

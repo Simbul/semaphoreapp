@@ -1,0 +1,12 @@
+[
+  {
+     "id": 9,
+     "name": "staging",
+     "server_url": "https://semaphoreapp.com/api/v1/projects/:hash_id/servers/9/status?auth_token=:auth_token"
+  },
+  {
+     "id": 11,
+     "name": "production",
+     "server_url": "https://semaphoreapp.com/api/v1/projects/:hash_id/servers/11/status?auth_token=:auth_token"
+  }
+]
