@@ -16,6 +16,10 @@ module Semaphoreapp
       raise_if_error(JSON.parse(super))
     end
 
+    def self.launch_build(project_hash_id, id, options={})
+      raise_if_error(JSON.parse(super))
+    end
+
     def self.get_build_information(project_hash_id, id, build_number, options={})
       raise_if_error(JSON.parse(super))
     end

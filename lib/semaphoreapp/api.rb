@@ -25,6 +25,11 @@ module Semaphoreapp
       send_request(branch_status_url(project_hash_id, id)).body
     end
 
+    def self.launch_build(project_hash_id, id, options={})
+      set_auth_token(options)
+      post_request(build_launch_url(project_hash_id, id)).body
+    end
+
     def self.get_build_information(project_hash_id, id, build_number, options={})
       set_auth_token(options)
       send_request(build_information_url(project_hash_id, id, build_number)).body
@@ -76,6 +81,10 @@ module Semaphoreapp
       url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/status")
     end
 
+    def self.build_launch_url(project_hash_id, id)
+      url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/build")
+    end
+
     def self.build_information_url(project_hash_id, id, build_number)
       url_with_auth_token("#{API_URL}/projects/#{project_hash_id}/#{id}/builds/#{build_number}")
     end
@@ -118,6 +127,15 @@ module Semaphoreapp
       https.start do |session|
         puts url if Semaphoreapp.debug?
         req = Net::HTTP::Get.new(url)
+        session.request(req)
+      end
+    end
+
+    def self.post_request url
+      https = setup_https(BASE_URL)
+      https.start do |session|
+        puts url if Semaphoreapp.debug?
+        req = Net::HTTP::Post.new(url)
         session.request(req)
       end
     end

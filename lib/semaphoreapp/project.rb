@@ -13,6 +13,10 @@ module Semaphoreapp
       branches.find{ |branch_status| branch_status.branch_name == 'master'}
     end
 
+    def build(branch)
+      Semaphoreapp::JsonApi.launch_build(self.hash_id, branch)
+    end
+
     def self.all
       build(Semaphoreapp::JsonApi.get_projects)
     end
