@@ -14,7 +14,7 @@ describe Semaphoreapp::JsonApi do
       let(:obj){ Object.new }
       subject{ Semaphoreapp::JsonApi.raise_if_error(obj) }
 
-      it{ expect{ subject }.not_to raise_error Semaphoreapp::Api::Error }
+      it{ expect{ subject }.not_to raise_error }
 
       it "should return its parameter without changes" do
         subject.should == obj

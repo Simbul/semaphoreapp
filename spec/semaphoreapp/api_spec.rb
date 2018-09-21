@@ -88,7 +88,7 @@ describe Semaphoreapp::Api do
   end
 
   describe "getters" do
-    let(:response){ mock(:response, :body => '') }
+    let(:response){ double(:response, :body => '') }
     before{ Semaphoreapp::Api.stub(:send_request).and_return(response) }
     before{ Semaphoreapp.stub(:auth_token).and_return('test_token') }
 
